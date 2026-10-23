@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajo Saving Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f4f8;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 500px;
+            margin: 30px auto;
+            padding: 25px;
+            background: white;
+            border-radius: 12px;
+        }
+        input, button {
+            padding: 12px;
+            margin: 8px;
+            width: 85%;
+        }
+        button {
+            background: #198754;
+            color: white;
+            border: none;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ajo Saving Tracker</h1>
+        <p>Track your daily and group savings.</p>
+        <input id="name" placeholder="Your name">
+        <input id="amount" type="number" placeholder="Amount saved">
+        <button onclick="saveMoney()">Add Savings</button>
+        <h2>Total Savings: ₦<span id="total">0</span></h2>
+        <ul id="records"></ul>
+    </div>
+    <script>
+        let total = 0;
+        function saveMoney() {
+            const name = document.getElementById('name').value.trim();
+            const amount = Number(document.getElementById('amount').value);
+            if (!name || amount <= 0) {
+                alert('Enter your name and a valid amount.');
+                return;
+            }
+            total += amount;
+            document.getElementById('total').textContent = total;
+            const record = document.createElement('li');
+            record.textContent = name + ': ₦' + amount.toLocaleString();
+            document.getElementById('records').appendChild(record);
+            document.getElementById('amount').value = '';
+        }
+    </script>
+</body>
+</html>
